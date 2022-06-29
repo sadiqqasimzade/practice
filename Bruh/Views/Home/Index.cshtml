@@ -1,0 +1,36 @@
+﻿@{
+
+	
+	ViewData["Title"] = "Home Page";
+}
+@using X.PagedList.Mvc;
+@using X.PagedList;
+@using X.PagedList.Mvc.Core
+@model PagedList<Setting>
+<style>
+	table,tr,td{
+		border:2px solid black;
+	}
+</style>
+<div class="text-center">
+	<h1 class="display-4">Welcome</h1>
+	<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+	<table>
+		<thead>
+			<tr>
+				<td>key</td>
+				<td>value</td>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>@item.Key</td>
+					<td>@item.Value</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+	@Html.PagedListPager( (IPagedList)Model, page => Url.Action("Index", new { page }) )
+</div>
